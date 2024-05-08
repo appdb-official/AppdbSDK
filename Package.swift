@@ -23,8 +23,8 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
        .binaryTarget(
            name: "AppdbRemoteBinaryPackage",
-           url: "https://dbservices.to/lib-dist/AppdbFramework-1.3.xcframework.zip",
-           checksum: "55832d4b9670acb666a07133c18d1a8ea6869df1372acf09c71854093fdd7bf1"
+           url: "https://dbservices.to/lib-dist/AppdbFramework-1.4.xcframework.zip",
+           checksum: "a6f84220a16e325b34ab730faf283425e114c8035d79e7638e60f1cfce5ebad6"
        ),
     ]
 )
