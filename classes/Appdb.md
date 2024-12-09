@@ -24,7 +24,7 @@ Check if current app installed via appdb
 func getPersistentCustomerIdentifier() -> Result<String, AppdbError>
 ```
 
-Returns unuque persistent appdb `customer` identifier of current app
+Returns unique persistent appdb `customer` identifier of current app
 
 - Returns:
     `Identifier string` or `AppdbError`
@@ -35,7 +35,7 @@ Returns unuque persistent appdb `customer` identifier of current app
 func getPersistentDeviceIdentifier() -> Result<String, AppdbError>
 ```
 
-Returns unuque persistent appdb `device` identifier of current app
+Returns unique persistent appdb `device` identifier of current app
 
 - Returns:
     `Identifier string` or `AppdbError`
@@ -57,7 +57,7 @@ Returns bundle identifier of current app
 func getAppleAppGroupIdentifier() -> Result<String, AppdbError>
 ```
 
-Returns unuque appdb apple app group identifier
+Returns unique appdb apple app group identifier
 
 - Returns:
     `Identifier string` or `AppdbError`
@@ -68,7 +68,7 @@ Returns unuque appdb apple app group identifier
 func getAppdbAppIdentifier() -> Result<String, AppdbError>
 ```
 
-Returns unuque appdb identifier of current app
+Returns unique appdb identifier of current app
 
 - Returns:
     `Identifier string` or `AppdbError`
@@ -120,7 +120,7 @@ Register device to receive push notifications
 func getSupportedServicesIdentifiers() -> Result<[String], AppdbError>
 ```
 
-Returns availiable supported services information
+Returns available supported services information
 
 [List of services and features](https://rtfm.dbservices.to/#/services-and-features/overview)
 
@@ -193,13 +193,13 @@ func isAppUpdateAvailable(
 Check current app for new version
 
 - Parameters:
-    - completion: Return `True` if update is availiable or `False` if not. In case of failed request return `AppdbError`
+    - completion: Return `True` if update is available or `False` if not. In case of failed request return `AppdbError`
 
 #### Parameters
 
 | Name | Description |
 | ---- | ----------- |
-| completion | Return `True` if update is availiable or `False` if not. In case of failed request return `AppdbError` |
+| completion | Return `True` if update is available or `False` if not. In case of failed request return `AppdbError` |
 
 ### `getAppdbStoreURL()`
 
@@ -302,3 +302,149 @@ Show the developer information in separate window modally
 
 - Returns:
     `Success` or `AppdbError`
+
+### `showInAppPurchaseProductMetadata(productIdentifier:completion:)`
+
+```swift
+func showInAppPurchaseProductMetadata(
+    productIdentifier: String,
+    completion: @escaping (Result<Void, AppdbError>) -> Void
+) -> Void
+```
+
+Returns the product metadata information
+
+- Parameters:
+    - productIdentifier: string used to identify product
+- Returns:
+    `Dictionary with the metadata information` or `AppdbError`
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| productIdentifier | string used to identify product |
+
+### `initInAppPurchase(productIdentifier:)`
+
+```swift
+func initInAppPurchase(
+    productIdentifier: String
+)
+```
+
+Start in app purchase
+
+- Parameters:
+    - productIdentifier: string used to identify product
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| productIdentifier | string used to identify product |
+
+### `setupInAppPurchaseHandler(_:)`
+
+```swift
+func setupInAppPurchaseHandler(
+    _ handler: @escaping (String, Result<Bool, AppdbError>) -> Void
+)
+```
+
+In app purchase handler (listener)
+
+- Parameters:
+    - handler: Return productIdentifier and status of current in app purchase transaction
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| handler | Return productIdentifier and status of current in app purchase transaction |
+
+### `handleDeeplink(_:)`
+
+```swift
+func handleDeeplink(_ url: URL) -> Void
+```
+
+Handle custom Appdb deeplinks (for example: in-app purchase deeplinks)
+
+- Parameters:
+    - url: Deeplink url
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| url | Deeplink url |
+
+### `syncInAppConsumable(productIdentifier:completion:)`
+
+```swift
+func syncInAppConsumable(
+    productIdentifier: String,
+    completion: @escaping (Result<Int, AppdbError>) -> Void
+)
+```
+
+Returns count of the InApp consumable product
+
+- Parameters:
+    - productIdentifier: string used to identify product
+- Returns:
+    `Number of remaining consumable items` or `AppdbError`
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| productIdentifier | string used to identify product |
+
+### `setInAppConsumableAmount(productIdentifier:amount:completion:)`
+
+```swift
+func setInAppConsumableAmount(
+    productIdentifier: String,
+    amount: Int,
+    completion: @escaping (Result<Int, AppdbError>) -> Void
+)
+```
+
+Returns the product metadata information
+
+- Parameters:
+    - productIdentifier: string used to identify product
+    - amount: amount of remaining consumable items
+- Returns:
+    `Number of remaining consumable items` or `AppdbError`
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| productIdentifier | string used to identify product |
+| amount | amount of remaining consumable items |
+
+### `getSubscriptionStatus(productIdentifier:completion:)`
+
+```swift
+func getSubscriptionStatus(
+    productIdentifier: String,
+    completion: @escaping (Result<SubscriptionStatusDataModel, AppdbError>) -> Void
+)
+```
+
+Returns the status of InApp subscription
+
+- Parameters:
+    - productIdentifier: string used to identify product
+- Returns:
+    `Current status of subscription` or `AppdbError`
+
+#### Parameters
+
+| Name | Description |
+| ---- | ----------- |
+| productIdentifier | string used to identify product |

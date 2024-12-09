@@ -13,16 +13,22 @@ public enum AppdbError: Error
 case notInstalledViaAppdb
 ```
 
-### `serviceNotAvailable`
+### `serviceNotAvailable(service:)`
 
 ```swift
-case serviceNotAvailable
+case serviceNotAvailable(service: Services)
 ```
 
-### `unhandled`
+### `apiErrors(errors:)`
 
 ```swift
-case unhandled
+case apiErrors(errors: [APIError])
+```
+
+### `unhandled(details:)`
+
+```swift
+case unhandled(details: String)
 ```
 
 ### `underlying(error:)`
